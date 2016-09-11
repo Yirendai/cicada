@@ -1,18 +1,18 @@
 commit build:
     script:
-        - bash build.sh commit_build
+        - echo "test" # do nothing temporary
 
 public_test_env:
     stage: deploy
     script:
-        - bash build.sh publish_test_env
+        - bash build.sh build_local
     only:
         - master
 
 Staging:
     stage: deploy
     script:
-        - bash build.sh release
+        - bash build.sh build_local
     only:
         - /^release.+$/
 
