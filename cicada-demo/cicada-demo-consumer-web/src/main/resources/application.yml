@@ -1,0 +1,23 @@
+###########dubbo配置开始##################
+dubbo.config:
+  enabled: true
+  
+  applicationName: demo-consumer  
+  #localhost:2182,127.0.0.1:2181 逗号分隔
+  zkUrls: 127.0.0.1:2181  
+
+
+
+############dubbo配置结束#################
+
+user:
+  name: goodman
+  
+cicada:
+  url: http://localhost:9080/upload
+  sampleRate: 100
+  connectTimeout: 100
+  soTimeout: 100
+  batchSize: 32
+  bufferSize: 1024
+  tpsLimit: 2048

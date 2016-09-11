@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <jmxConfigurator />
+    <logger name="org.springframework.web" level="INFO" />
+    <logger name="com.yirendai.infra.cicada" level="DEBUG" />
+    <logger name="org.apache.http" level="INFO" />
+    <logger name="swagger" level="ERROR" />
+    <root level="ERROR">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

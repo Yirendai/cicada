@@ -1,0 +1,23 @@
+{
+    "settings": {
+        "number_of_shards": 5,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "details": {
+            "dynamic": false,
+            "include_in_all": false,
+            "properties": {
+                "traceId": {"type": "string", "index": "not_analyzed"},
+                "spanId": {"type": "string", "index": "not_analyzed"},
+                "type": {"type": "string", "index": "no"},
+                "key": {"type": "string", "index": "no"},
+                "value": {"type": "string", "index": "no"},
+                "timestamp": {"type": "long", "index": "no"},
+                "duration": {"type": "integer", "index": "no"},
+                "ip": {"type": "string", "index": "no"},
+                "port": {"type": "integer", "index": "no"}
+            }
+        }
+    }
+}

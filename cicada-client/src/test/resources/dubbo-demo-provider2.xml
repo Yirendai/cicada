@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:protocol name="dubbo" port="20881" />
+    <dubbo:provider protocol="dubbo" retries="0" actives="30"
+        accepts="1000" timeout="750000" token="333333" />
+
+    <bean id="demoService2" class="demo.provider2.DemoServiceImpl2" />
+
+    <dubbo:service interface="demo.provider2.DemoService2"
+        ref="demoService2">
+        <dubbo:parameter key="traceEnable" value="true" />
+    </dubbo:service>
+
+</beans>

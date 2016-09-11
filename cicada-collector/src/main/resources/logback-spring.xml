@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <jmxConfigurator />
+
+
+    <property name="CICADA_LOG_FILE" value="cicada" />
+    <property name="CICADA_LOG_MAX_HISTORY" value="7" />
+    <property name="CICADA_FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%t] %-40.40logger{50} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%rEx}" />
+
+
+    <appender name="cicada_log_info"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${CICADA_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./log/info-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>${CICADA_LOG_MAX_HISTORY}</maxHistory>  
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>   
+        </rollingPolicy>
+    </appender>
+
+    <appender name="cicada_log_error"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${CICADA_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./log/error-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>${CICADA_LOG_MAX_HISTORY}</maxHistory>  
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>   
+        </rollingPolicy>
+    </appender>
+
+    <appender name="cicada_log_warn"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${CICADA_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./log/warn-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>${CICADA_LOG_MAX_HISTORY}</maxHistory>  
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>   
+        </rollingPolicy>
+    </appender>
+
+    <appender name="cicada_log_debug"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${CICADA_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./log/debug-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>${CICADA_LOG_MAX_HISTORY}</maxHistory>  
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>   
+        </rollingPolicy>
+    </appender>
+
+    <logger name="org.springframework.web" level="INFO" additivity="false">
+        <appender-ref ref="cicada_log_info" />
+        <appender-ref ref="cicada_log_warn" />
+        <appender-ref ref="cicada_log_error" />
+    </logger>
+
+    <logger name="org.springframework.boot" level="INFO" additivity="false">
+        <appender-ref ref="cicada_log_info" />
+        <appender-ref ref="cicada_log_warn" />
+        <appender-ref ref="cicada_log_error" />
+    </logger>
+
+    <logger name="com.yirendai.infra.cicada" level="INFO"
+            additivity="false">
+        <appender-ref ref="cicada_log_info" />
+        <appender-ref ref="cicada_log_warn" />
+        <appender-ref ref="cicada_log_error" />
+    </logger>
+    
+    <logger name="org.apache.http" level="INFO" additivity="false">
+        <appender-ref ref="cicada_log_info" />
+        <appender-ref ref="cicada_log_warn" />
+        <appender-ref ref="cicada_log_error" />
+    </logger>
+
+    <logger name="swagger" level="ERROR" additivity="false">
+        <appender-ref ref="cicada_log_info" />
+        <appender-ref ref="cicada_log_warn" />
+        <appender-ref ref="cicada_log_error" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="cicada_log_info" />
+        <appender-ref ref="cicada_log_warn" />
+        <appender-ref ref="cicada_log_error" />
+    </root>
+</configuration>

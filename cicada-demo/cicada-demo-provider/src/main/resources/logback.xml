@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false" scan="true" scanPeriod="5 minutes">
+    <contextName>cicada-client</contextName>
+    
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+    
+    <!-- 日志文件存储路径 -->
+    <property name="LOG_HOME" value="${catalina.home}/logs/" />
+     <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <!-- 控制台输出 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c (%F:%L) - %m%n" />
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} | %thread | %-5level | %logger{200}:%file\(%line\) | %msg%n</pattern>
+        </layout>
+    </appender>
+    
+   <!-- Info -->
+   <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/info/cicada-client-info.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <!-- Debug -->
+   <appender name="debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/debug/cicada-client-debug.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <!-- Error -->
+   <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/error/cicada-client-error.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <!-- 异步日志配置 -->
+    <appender name="info_async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>3000</discardingThreshold>
+        <queueSize>10000</queueSize>
+        <appender-ref ref="info" />
+    </appender>
+
+    <appender name="debug_async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>3000</discardingThreshold>
+        <queueSize>10000</queueSize>
+        <appender-ref ref="debug" />
+    </appender>
+
+    <appender name="error_async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>3000</discardingThreshold>
+        <queueSize>10000</queueSize>
+        <appender-ref ref="error" />
+    </appender>
+    
+    <logger name="org.springframework" level="Info" />
+    <logger name="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver" level="info" />
+    <logger name="ch.qos.logback" level="ERROR" />
+    <logger name="org.mybatis.spring.mapper.MapperScannerConfigurer" level="INFO" />
+    <logger name="org.mybatis.spring.SqlSessionFactoryBean" level="INFO" />
+    <logger name="org.apache.commons.httpclient.HttpClient"  level="ERROR" />
+    <logger name="org.apache.commons.httpclient" level="ERROR" />
+    <logger name="org.apache.commons.httpclient.HttpConnection" level="DEBUG" />
+    <logger name="org.apache.http" level="ERROR" />
+    <logger name="org.apache.ibatis.logging.LogFactory" level="ERROR" />
+    <logger name="com.alibaba.dubbo.common.extension.ExtensionLoader" level="ERROR" />
+    <logger name="org.apache.commons.beanutils" level="ERROR" />
+    <logger name="org.apache.http.headers" level="ERROR" />
+    <logger name="org.apache.zookeeper.ClientCnxn" level="ERROR" />
+    <logger name="com.alibaba.dubbo.common.logger.log4j" level="ERROR" />
+    <logger name="net.rubyeye.xmemcached.impl" level="ERROR" />
+    <logger name="com.google.code.yanf4j.core.impl.AbstractSession" level="ERROR" />
+    <logger name="org.apache.activemq.transport.AbstractInactivityMonitor" level="ERROR" />
+    <logger name="com.alibaba.dubbo.remoting.exchange.support.header.HeartbeatHandler" level="ERROR" />
+    <logger name="com.alibaba.dubbo.remoting.exchange.support.header.HeartBeatTask" level="ERROR" />
+    <logger name="java.sql.ResultSet" level="INFO" />
+    <logger name="org.springframework.data.redis.core.RedisConnectionUtils" level="ERROR" />
+    <logger name="org.springframework.session.data.redis.RedisOperationsSessionRepository" level="ERROR" />
+    <logger name="com.mchange.v2.resourcepool.BasicResourcePool" level="ERROR" />
+    <logger name="org.apache.curator.framework.state.ConnectionStateManager" level="ERROR" />
+
+    <root level="DEBUG">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="info_async" />
+        <appender-ref ref="debug_async" />
+        <appender-ref ref="error_async" />
+    </root>
+
+</configuration>

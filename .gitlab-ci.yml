@@ -1,0 +1,18 @@
+commit build:
+    script:
+        - bash build.sh commit_build
+
+public_test_env:
+    stage: deploy
+    script:
+        - bash build.sh publish_test_env
+    only:
+        - master
+
+Staging:
+    stage: deploy
+    script:
+        - bash build.sh release
+    only:
+        - /^release.+$/
+

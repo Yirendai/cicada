@@ -1,0 +1,87 @@
+spring:
+  profiles.active: env_development
+  datasource.driverClassName: com.p6spy.engine.spy.P6SpyDriver
+  jpa: 
+    database: mysql
+    properties.jadira.usertype.autoRegisterUserTypes: true
+    generate-ddl: false
+    hibernate.ddl-auto: none 
+    hibernate.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    # properties.hibernate.default_schema: infra_cicada_web
+  datasource:
+    max-active: 50
+    initial-size: 32
+    max-idle: 40
+    min-idle: 1
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1
+    time-between-eviction-runs-millis: 5000
+    min-evictable-idle-time-millis: 60000
+
+job.slot.range: 65536
+trace:
+  log.root.dir: /opt/yrd_logs/tengine/cicada/
+  progress.file.path: /opt/yrd_data/cicada/progress.rcd
+
+---
+spring:
+  profiles: env_test
+  datasource:
+    platform: mysql
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/cicada?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456 
+
+elasticsearch:
+  cluster.name: cicada_warehouse
+  bulk.await.minutes: 10
+  node:
+    addr: 127.0.0.1
+    port: 9300
+  index:
+    type.name: details
+    span.prefix: cicada-span
+    annotation.prefix: cicada-annotation
+
+---
+spring:
+  profiles: env_development
+  datasource:
+    platform: mysql
+    url: jdbc:p6spy:mysql://localhost:3306/cicada?useUnicode=true&characterEncoding=UTF-8
+    username: cicada
+    password: dev_cicada_passwd
+
+elasticsearch:
+  cluster.name: cicada_warehouse
+  bulk.await.minutes: 10
+  node:
+    addr: 127.0.0.1
+    port: 9300
+  index:
+    type.name: details
+    span.prefix: cicada-span
+    annotation.prefix: cicada-annotation
+    
+---
+spring:
+  profiles: env_production
+  datasource:
+    platform: mysql
+    url: jdbc:p6spy:mysql://localhost:3306/cicada?useUnicode=true&characterEncoding=UTF-8
+    username: cicada
+    password: prod_cicada_passwd
+
+elasticsearch:
+  cluster.name: cicada_warehouse
+  bulk.await.minutes: 10
+  node:
+    addr: 127.0.0.1
+    port: 9300
+  index:
+    type.name: details
+    span.prefix: cicada-span
+    annotation.prefix: cicada-annotation
+
+ 

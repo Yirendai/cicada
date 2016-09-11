@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:protocol name="dubbo" port="20880" />
+    <dubbo:provider protocol="dubbo" retries="0" actives="30"
+        accepts="1000" timeout="750000" token="333333" />
+
+    <!--普通服务 -->
+    <dubbo:reference id="demoService2" interface="demo.provider2.DemoService2"
+        check="false">
+        <dubbo:parameter key="traceEnable" value="true" />
+        <dubbo:parameter key="traceRate" value="0.1" />
+    </dubbo:reference>
+
+    <bean id="demoService" class="demo.provider.DemoServiceImpl">
+        <property name="demoService2" ref="demoService2" />
+    </bean>
+
+    <dubbo:service interface="demo.provider.DemoService" ref="demoService">
+        <dubbo:parameter key="traceEnable" value="true" />
+    </dubbo:service>
+
+</beans>

@@ -1,0 +1,29 @@
+###########dubbo配置开始##################
+dubbo.config:
+  enabled: true
+  
+  applicationName: demo-provider  
+  #localhost:2182,127.0.0.1:2181 逗号分隔
+  zkUrls: 127.0.0.1:2181 
+  protocolName: dubbo
+  protocolPort: 20880
+  providerProtocol: dubbo
+  providerRetries: 0
+  providerActives: 30
+  providerAccepts: 1000
+  providerTimeout: 750000
+  providerToken: 333333  
+  
+############dubbo配置结束#################
+
+demo.user:
+  name: goodman
+  
+cicada:
+  url: http://localhost:9080/upload
+  sampleRate: 100
+  connectTimeout: 100
+  soTimeout: 100
+  batchSize: 32
+  bufferSize: 1024
+  tpsLimit: 2048

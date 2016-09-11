@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+        <bean id="transferEngine" class="com.yirendai.infra.cicada.transfer.TransferEngine"
+            init-method="start">
+            <!-- 用于收集日志的nginx地址，必填 -->
+            <constructor-arg value="http://localhost:9080/upload" />
+            
+            <!-- 以下为选填，根据需要填写 -->
+            <!-- 采样率，整数 ，取值空间：1-100-->
+            <property name="sampleRate" value="100" />
+            <!-- 连接超时时长，整数，毫秒 -->
+            <property name="connectTimeout" value="100" />
+            <!-- 传送超时时长，整数，毫秒 -->
+            <property name="soTimeout" value="100" />
+            <!-- 批处理大小,消息条数，整数 -->
+            <property name="batchSize" value="32" />
+            <!-- 缓存消息条数，整数 -->
+            <property name="bufferSize" value="1024" />
+            <!-- tps限制，发送频率上限（安全考虑），超过的发送频率的消息将被扔掉 ，整数 -->
+            <property name="tpsLimit" value="2048" />
+        </bean>
+    
+        <bean class="com.yirendai.infra.cicada.utils.SpringContextUtil" />
+</beans>

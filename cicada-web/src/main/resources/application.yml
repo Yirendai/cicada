@@ -1,0 +1,84 @@
+server: 
+  port: 9880
+    
+spring:
+  profiles.active: env_development
+  jpa: 
+    database: mysql
+    properties.jadira.usertype.autoRegisterUserTypes: true
+    generate-ddl: false
+    hibernate.ddl-auto: none 
+    hibernate.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  datasource:
+    driverClassName: com.p6spy.engine.spy.P6SpyDriver
+    max-active: 50
+    initial-size: 32
+    max-idle: 40
+    min-idle: 1
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1
+    time-between-eviction-runs-millis: 5000
+    min-evictable-idle-time-millis: 60000
+
+job.slot.range: 65536
+
+---
+spring:
+  profiles: env_development
+  datasource:
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/cicada?useUnicode=true&characterEncoding=UTF-8
+    username: cicada
+    password: dev_cicada_passwd 
+    platform: mysql
+
+elasticsearch:
+  node:
+    addr: 127.0.0.1
+    port: 9300
+  cluster.name: cicada_warehouse
+  bulk.await.minutes: 10
+  index:
+    retention.day: 15
+    type.name: details
+    span.prefix: cicada-span
+    annotation.prefix: cicada-annotation
+
+statistic:
+  zookeeper:
+    connection: 127.0.0.1:2181
+    namespace: infra/cicada 
+    node:
+      job: /job
+      master: /master
+      instances: /instances
+
+---
+spring:
+  profiles: env_production
+  datasource:
+    platform: mysql
+    url: jdbc:p6spy:mysql://localhost:3306/cicada?useUnicode=true&characterEncoding=UTF-8
+    username: cicada
+    password: prod_cicada_passwd
+
+elasticsearch:
+  cluster.name: cicada_warehouse
+  bulk.await.minutes: 10
+  node:
+    addr: 127.0.0.1
+    port: 9300
+  index:
+    retention.day: 15
+    type.name: details
+    span.prefix: cicada-span
+    annotation.prefix: cicada-annotation
+ 
+statistic:
+  zookeeper:
+    connection: 127.0.0.1:2181
+    namespace: infra/cicada
+    node:
+      job: /job
+      master: /master
+      instances: /instances

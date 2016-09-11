@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "number_of_shards": 5,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "details": {
+            "dynamic": false,
+            "include_in_all": false,
+            "properties": {
+                "appId": {"type": "integer", "index": "not_analyzed"},
+                "serviceId": {"type": "integer", "index": "not_analyzed"},
+                "methodId": {"type": "integer", "index": "not_analyzed"},
+                "id": {"type": "string", "index": "not_analyzed"},
+                "startTime": {"type": "long", "index": "no"},
+                "duration": {"type": "integer", "index": "no"},
+                "hasException": {"type": "boolean", "index": "not_analyzed"}
+            }
+        }
+    }
+}
