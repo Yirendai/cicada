@@ -123,7 +123,7 @@ cicada-web服务默认监听端口是 9880。可以通过在浏览器中输入 `
 
 ### 数据展现
 **项目下载**  
-到[cicada-dashboard github地址]()，将项目checkout下来。
+到[cicada-dashboard github地址](https://github.com/Yirendai/cicada-dashboard)，将项目checkout下来。
 
 **编译**  
 进入```cicada-dashboard```项目目录，修改src/config.js中的server配置。server地址是部署的cicada-web的地址。比如```http://127.0.0.1:9880```。  
