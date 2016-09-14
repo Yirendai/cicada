@@ -8,6 +8,47 @@
 	</parent>
 	<artifactId>cicada-client</artifactId>
 
+    <url>https://github.com/Yirendai/cicada</url>
+    <description>A Dapper based Large-Scale Distributed Systems Tracing Infrastructure. </description>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:https://github.com/Yirendai/cicada.git</connection>
+        <developerConnection>scm:git:git@github.com:Yirendai/cicada.git</developerConnection>
+        <url>https://github.com/Yirendai/cicada</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>zechengzhao</id>
+            <name>zhaozecheng</name>
+            <email>zechengzhao@yirendai.com</email>
+            <organization>Yirendai</organization>
+            <organizationUrl>http://www.yirendai.com</organizationUrl>
+            <roles>
+                <role>master</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+        <developer>
+            <id>pengchengzhu1</id>
+            <name>zhupengcheng</name>
+            <email>pengchengzhu1@yirendai.com</email>
+            <organization>Yirendai</organization>
+            <organizationUrl>http://www.yirendai.com</organizationUrl>
+            <roles>
+                <role>master</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
