@@ -40,7 +40,7 @@
 				<groupId>com.yirendai.infra</groupId>
 				<artifactId>cicada-client</artifactId>
 				<classifier>aspectj</classifier>
-				<version>${cicada.version}</version>
+                <version>${cicada.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
