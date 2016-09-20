@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.yirendai.infra</groupId>
 		<artifactId>cicada</artifactId>
-		<version>2.0.0-SNAPSHOT</version>
+		<version>2.0.1</version>
 	</parent>
 	<artifactId>cicada-demo</artifactId>
 	<packaging>pom</packaging>
@@ -17,7 +17,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cicada.version>2.0.0-SNAPSHOT</cicada.version>
+		<cicada.version>2.0.1</cicada.version>
 	</properties>
 
 	<dependencyManagement>
