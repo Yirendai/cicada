@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ACTIVE_PROFILE=env_development # env_development, env_production
-VERSION=2.0.0
+VERSION=2.0.1
 PACKAGE_NAME=cicada-web
 
 function stop() {
@@ -12,7 +12,7 @@ function stop() {
 
 function start() {
     nohup java -jar -Xmx4096M -XX:MaxPermSize=512M  \
-        -Djava.security.egd=file:/dev/./urandom ${PACKAGE_NAME}-${VERSION}-SNAPSHOT.jar \
+        -Djava.security.egd=file:/dev/./urandom ${PACKAGE_NAME}-${VERSION}.jar \
         --spring.profiles.active=$ACTIVE_PROFILE > nohup.log &
 }
 
