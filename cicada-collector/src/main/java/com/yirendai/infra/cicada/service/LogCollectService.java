@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -57,6 +58,11 @@ public class LogCollectService {
     // 读取所有日志信息
     final List<String> lines = reader.read();
     if (lines.isEmpty()) {
+      try {
+        TimeUnit.MILLISECONDS.sleep(1000);
+      } catch (InterruptedException ex) {
+        log.error("failed sleep interrupted, error{}", ex);
+      }
       return;
     }
 
